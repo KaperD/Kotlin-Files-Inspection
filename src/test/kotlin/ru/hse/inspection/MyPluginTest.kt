@@ -1,17 +1,12 @@
 package ru.hse.inspection
 
-import com.intellij.testFramework.TestDataPath
-import com.intellij.testFramework.fixtures.BasePlatformTestCase
+import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase
+import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
+import org.junit.Test
 
-@TestDataPath("\$CONTENT_ROOT/src/test/testData")
-class MyPluginTest : BasePlatformTestCase() {
+class MyPluginTest : LightPlatformCodeInsightFixture4TestCase() {
 
-    private fun doTest(fileName: String, text: String) {
-        myFixture.configureByText(fileName, text)
-        myFixture.enableInspections(KotlinFileInspection())
-        myFixture.checkHighlighting()
-    }
-
+    @Test
     fun `test ordinary kotlin file`() {
         doTest(
             "main.kt",
@@ -24,6 +19,7 @@ class MyPluginTest : BasePlatformTestCase() {
         )
     }
 
+    @Test
     fun `test gradle kotlin file`() {
         doTest(
             "build.gradle.kts",
@@ -35,5 +31,26 @@ class MyPluginTest : BasePlatformTestCase() {
                 </weak_warning>
             """.trimIndent()
         )
+    }
+
+    @Test
+    fun `test not kotlin file`() {
+        doTest(
+            "main.java",
+            """
+                public class Main {
+                    public static void main(String[] args) {
+                        System.out.println("Hello World!");
+                    }
+                }
+            """.trimIndent()
+        )
+    }
+
+    private fun doTest(fileName: String, text: String) {
+        (myFixture as? CodeInsightTestFixtureImpl)?.canChangeDocumentDuringHighlighting(true)
+        myFixture.configureByText(fileName, text)
+        myFixture.enableInspections(KotlinFileInspection())
+        myFixture.checkHighlighting(false, false, true, true)
     }
 }
