@@ -2,17 +2,11 @@
 <idea-plugin>
     <id>ru.hse.inspection</id>
     <name>Kotlin-Files-Inspection</name>
-    <vendor>kaperd</vendor>
+    <vendor>KaperD</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="ru.hse.inspection.services.MyApplicationService"/>
-        <projectService serviceImplementation="ru.hse.inspection.services.MyProjectService"/>
+        <editorNotificationProvider implementation="ru.hse.inspection.provider.KotlinFileNotificationProvider"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="ru.hse.inspection.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
