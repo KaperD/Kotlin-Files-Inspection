@@ -1,31 +1,39 @@
 package ru.hse.inspection
 
-import com.intellij.ide.highlighter.XmlFileType
-import com.intellij.psi.xml.XmlFile
 import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
-import com.intellij.util.PsiErrorElementUtil
 
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class MyPluginTest : BasePlatformTestCase() {
 
-    fun testXMLFile() {
-        val psiFile = myFixture.configureByText(XmlFileType.INSTANCE, "<foo>bar</foo>")
-        val xmlFile = assertInstanceOf(psiFile, XmlFile::class.java)
-
-        assertFalse(PsiErrorElementUtil.hasErrors(project, xmlFile.virtualFile))
-
-        assertNotNull(xmlFile.rootTag)
-
-        xmlFile.rootTag?.let {
-            assertEquals("foo", it.name)
-            assertEquals("bar", it.value.text)
-        }
+    private fun doTest(fileName: String, text: String) {
+        myFixture.configureByText(fileName, text)
+        myFixture.enableInspections(KotlinFileInspection())
+        myFixture.checkHighlighting()
     }
 
-    override fun getTestDataPath() = "src/test/testData/rename"
+    fun `test ordinary kotlin file`() {
+        doTest(
+            "main.kt",
+            """
+                <weak_warning descr="${MyBundle.message("inspectionMessage")}">fun main() {
+                    println("Hello World!")
+                }
+                </weak_warning>
+            """.trimIndent()
+        )
+    }
 
-    fun testRename() {
-        myFixture.testRename("foo.xml", "foo_after.xml", "a2")
+    fun `test gradle kotlin file`() {
+        doTest(
+            "build.gradle.kts",
+            """
+                <weak_warning descr="${MyBundle.message("inspectionMessage")}">plugins {
+                    id("java")
+                    id("org.jetbrains.kotlin.jvm") version "1.6.10"
+                }
+                </weak_warning>
+            """.trimIndent()
+        )
     }
 }
