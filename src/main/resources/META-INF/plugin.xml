@@ -1,12 +1,21 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>ru.hse.inspection</id>
-    <name>Kotlin-Files-Inspection</name>
+    <name>Kotlin Files Inspection</name>
     <vendor>KaperD</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
 
     <extensions defaultExtensionNs="com.intellij">
-        <editorNotificationProvider implementation="ru.hse.inspection.provider.KotlinFileNotificationProvider"/>
+        <localInspection language="kotlin"
+                         displayName="Shows prepared message"
+                         groupPath="Kotlin"
+                         groupBundle="messages.MyBundle"
+                         groupKey="group.names.prepared.message"
+                         enabledByDefault="true"
+                         level="INFO"
+                         implementationClass="ru.hse.inspection.KotlinFileInspection"/>
     </extensions>
 </idea-plugin>
