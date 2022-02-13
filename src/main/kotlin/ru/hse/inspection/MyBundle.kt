@@ -1,4 +1,4 @@
-package com.github.kaperd.kotlinfilesinspection
+package ru.hse.inspection
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

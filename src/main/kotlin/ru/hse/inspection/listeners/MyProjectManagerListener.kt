@@ -1,9 +1,9 @@
-package com.github.kaperd.kotlinfilesinspection.listeners
+package ru.hse.inspection.listeners
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.github.kaperd.kotlinfilesinspection.services.MyProjectService
+import ru.hse.inspection.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

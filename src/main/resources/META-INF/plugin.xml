@@ -1,18 +1,18 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.kaperd.kotlinfilesinspection</id>
+    <id>ru.hse.inspection</id>
     <name>Kotlin-Files-Inspection</name>
     <vendor>kaperd</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.kaperd.kotlinfilesinspection.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.kaperd.kotlinfilesinspection.services.MyProjectService"/>
+        <applicationService serviceImplementation="ru.hse.inspection.services.MyApplicationService"/>
+        <projectService serviceImplementation="ru.hse.inspection.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.kaperd.kotlinfilesinspection.listeners.MyProjectManagerListener"
+        <listener class="ru.hse.inspection.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>

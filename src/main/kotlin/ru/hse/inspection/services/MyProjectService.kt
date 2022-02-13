@@ -1,7 +1,7 @@
-package com.github.kaperd.kotlinfilesinspection.services
+package ru.hse.inspection.services
 
 import com.intellij.openapi.project.Project
-import com.github.kaperd.kotlinfilesinspection.MyBundle
+import ru.hse.inspection.MyBundle
 
 class MyProjectService(project: Project) {
 
