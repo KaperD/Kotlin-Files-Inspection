@@ -7,7 +7,7 @@
 <!-- Plugin description -->
 Plugin shows prepared message, when Kotlin file is opened
 <!-- Plugin description end -->
-[![ezgif.com-gif-maker44dcebfb470fd366.gif](https://s10.gifyu.com/images/ezgif.com-gif-maker44dcebfb470fd366.gif)](https://gifyu.com/image/Szg2J)
+![PluginWork](images/PluginWork.gif)
 
 ## Supported IDE
 IntelliJ IDE should support Kotlin
