@@ -18,7 +18,7 @@ Supported versions: 2021.1 — 2021.3
   
 - Manually:
 
-  Download the [latest release](https://github.com/KaperD/Kotlin-Files-Inspection/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/KaperD/Kotlin-Files-Inspection/releases/latest)  Kotlin-Files-Inspection zip file and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
